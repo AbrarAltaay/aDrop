@@ -1,0 +1,53 @@
+{
+  "name": "adrop",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Abrar Altaay",
+  "description": "aDrop photo ingest app for safely copying Sony ARW shoots.",
+  "main": "dist/main/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .\"",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc && vite build",
+    "start": "npm run build && electron .",
+    "pack:mac": "npm run build && electron-builder --mac dir --config.mac.identity=null",
+    "dist": "npm run build && electron-builder --mac dmg --config.mac.identity=null"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "concurrently": "^9.0.0",
+    "cross-env": "^10.0.0",
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0",
+    "wait-on": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.abrar.adrop",
+    "productName": "aDrop",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.photography",
+      "identity": null,
+      "target": [
+        "dir",
+        "dmg"
+      ]
+    }
+  }
+}

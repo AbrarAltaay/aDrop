@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+release/
+Last_Scan_Report.txt
+*.log
+.env
+
